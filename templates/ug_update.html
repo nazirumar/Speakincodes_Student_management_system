@@ -1,0 +1,182 @@
+
+{% load static %}
+
+
+ {% block title %}{%  endblock %}
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/ugg.css' %}">  
+{% block content %}
+   
+        <!-- Modal HTML -->
+        <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action=" ">
+                            {% csrf_token %}
+                            {% for form in forms %}
+                            {{ form.errors }}
+
+                            
+                        <table style="width:100%">
+                        
+                            <tr>
+                            <td>   {{ form.label_tag }}</td>
+                            
+                            </tr>
+                            <tr>
+                            <td>  {{ form }}</td>
+                          
+                            </tr>
+                            {% endfor %}
+                        </table>
+                                                 
+                            <button type="submit" class="btn btn-primary">submit</button>
+                          </form>
+                        <p class="text-secondary"><small>If you don't save, your changes will be lost.</small></p>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Modal HTML  delete model-->
+<div class="modal fade" id="fm-modal-grid" tabindex="-1"
+     role="dialog" aria-labelledBy="fm-modal-grid"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <p>Are you sure you want to delte {{post.title}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+         
+        </div>
+    </div>
+</div> 
+    <div class="card">
+    
+    <div class="profile-info">
+        <div class="profile-pics">
+            <a href=""> <img src="{% static 'images/Logo.png' %}" alt="Logo"  style="margin-top: 10px;"></a>
+         </div><div class="profile-pics">
+            <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" style="margin-top: 10px;"></a>
+         </div>
+{% if request.user.is_authenticated %}
+Hello {{ request.user }},
+<p>93948928</p>
+<div class="user-container">
+<div class="dashbord">
+<a href="{% url 'biodataupdate' %}"> Dashbord</a>
+<span class="glyphicon glyphicon-menu-down"></span>
+</div>
+
+<a href="{% url 'logout' %}"><i class="glyphicon glyphicon-off"></i>  Logout</a>
+{% else %}
+<a href="{% url 'MS:login' %}">Log-in</a>
+{% endif %}
+</div>
+</div>
+      <div class="student-info">
+    <div class="student-profile">
+<div class="icons">
+    <i class="glyphicon glyphicon-align-left" style="margin-left:10px; padding-right:10px; "></i>
+    <i class="glyphicon glyphicon-align-left"></i>
+
+</div>
+<div class="profile-pictures">
+   <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" id="profile" height=40></a>
+</div>
+
+    </div>     
+    <div class="add-new"> 
+    <div class="olevel">O-LEVEL Qualification</div>
+    
+        
+      </div>
+      <div class="O-level-container">
+          <div class="Olavel-add">
+          <p style="padding:15px;">O-LEVEL</p>
+          <div class="m-4">
+        <!-- Button HTML (to Trigger Modal) -->
+        <button type="button" id="myBtn" class="btn btn-lg btn-primary"><i class="glyphicon glyphicon-plus"></i> Add New</button>
+    
+
+    </div></div>
+<table class="student-table">                                     
+    <tr>
+        <th>SUBJECT</th>  
+        <th>GRADE</th>                                    
+        <th>EXAMINATION_TYPE</th>    
+        <th>Delete</th>                                       
+
+                   
+    </tr> 
+    <tr> {% for data in dataset %}
+        <td>{{data.Subject}}</td>       
+        <td>{{data.grade}}</td>           
+        <td>{{data.Examination_type}}</td>  
+        <td>
+          
+               <a class="delete-link" id="delete-object" data-object-id="3">Delete</a>
+        
+        </td>                                       
+        
+    </tr>  {% endfor %}
+</table>
+
+
+</div>
+    
+    
+</div>
+</div>
+</div>
+      </div>
+
+      <script>
+             var elm = document.getElementById('delete-object');
+        var objectID = elm.getAttribute('data-object-id');
+        var resultDiv = document.getElementById('result');
+        elm.addEventListener('click', function() {
+        var ask = confirm('are u sure You want delete ?');
+        if (ask && objectID) {
+            var r = "Page will be redirected to </object/delete/" + objectID + "/>";
+            resultDiv.textContent = r;
+        } else {
+            resultDiv.textContent = "User cancelled the dialog box...";
+        }
+        return false;
+        });
+
+      </script>
+
+      <script>
+     
+
+        $(document).ready(function(){
+            $("#myBtn").click(function(){
+                $("#myModal").modal("show");
+            });
+        });
+        </script>
+    {%  endblock %}

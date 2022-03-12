@@ -1,0 +1,112 @@
+
+{% load static %}
+
+
+{% block title %}{%  endblock %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/ugg.css' %}">  
+<link rel="stylesheet" href="{% static 'css/e-activation.css' %}">  
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% block content %}
+  
+    
+                 
+
+   <div class="card">
+   
+   <div class="profile-info">
+       <div class="profile-pics">
+           <a href=""> <img src="{% static 'images/Logo.png' %}" alt="Logo"  style="margin-top: 10px;"></a>
+        </div><div class="profile-pics">
+           <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" style="margin-top: 10px;"></a>
+        </div>
+{% if request.user.is_authenticated %}
+Hello {{ request.user }},
+<p>93948928</p>
+<div class="user-container">
+<div class="dashbord">
+<a href="{% url 'biodataupdate' %}"> Dashbord</a>
+<span class="glyphicon glyphicon-menu-down"></span>
+</div>
+
+<a href="{% url 'logout' %}"><i class="glyphicon glyphicon-off"></i>  Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Log-in</a>
+{% endif %}
+</div>
+</div>
+     <div class="student-info">
+   <div class="student-profile">
+<div class="icons">
+   <i class="glyphicon glyphicon-align-left" style="margin-left:10px; padding-right:10px; "></i>
+   <i class="glyphicon glyphicon-align-left"></i>
+
+</div>
+<div class="profile-pictures">
+  <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" id="profile" height=40></a>
+</div>
+
+   </div>     
+   <div class="add-new"> 
+   <div class="olevel">e-Activation</div>
+   
+       
+     </div>
+     <div class="e-activation-container">
+        <p>Online Application Activation</p>
+
+         <div class="activation-add">
+         <div class="e-4">
+    <form action="" method="post" class="w3-container">
+       {% csrf_token %}
+            <p>
+             {{form.as_p }}
+        </p>
+     
+    
+        <button type="submit">Activation</button>
+
+
+    </form>
+   </div></div>
+
+
+
+</div>
+   
+   
+</div>
+</div>
+</div>
+     </div>
+
+     <script>
+            var elm = document.getElementById('delete-object');
+       var objectID = elm.getAttribute('data-object-id');
+       var resultDiv = document.getElementById('result');
+       elm.addEventListener('click', function() {
+       var ask = confirm('are u sure You want delete ?');
+       if (ask && objectID) {
+           var r = "Page will be redirected to </object/delete/" + objectID + "/>";
+           resultDiv.textContent = r;
+       } else {
+           resultDiv.textContent = "User cancelled the dialog box...";
+       }
+       return false;
+       });
+
+     </script>
+
+     <script>
+    
+
+       $(document).ready(function(){
+           $("#myBtn").click(function(){
+               $("#myModal").modal("show");
+           });
+       });
+       </script>
+   {%  endblock %}

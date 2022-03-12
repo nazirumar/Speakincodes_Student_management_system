@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load socialaccount %}
+
+{% load static %}
+
+ {% block title %}{%  endblock %}
+
+    {% block content %}
+
+    <!-- <div id="MyPopup" class="modal fade show" role="dialog" aria-modal="true" style="padding-right: 17px; display: block;">
+        <div class="modal-dialog">
+            Modal content
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        ×</button>
+                    <h4 class="modal-title">Notice To Applicants !!</h4>
+                </div>
+                <div class="modal-body">Dear Applicants, <br> Please make payment of N10,000.00 into Sajo College of Nursing Sciences Main Account <br><hr>Account Name: Sajo College of Nursing Sciences Main Account <br><hr> Account Number: 1023694946 <br><hr>Bank Name:UBA <br><hr> After payment, please forward your evidence of payment to the college Bursary Department or info@sajocons.edu.ng for your PIN. </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<div class="Login-container">
+    
+<div class="Login-img">
+    <img src="{% static 'images/home-img.webp' %}" alt="" srcset="">
+</div>
+<div class="Login-row">
+    <div class="Login-bag">
+        <img src="{% static 'images/logo.png' %}" alt="" srcset="">
+    </div>
+    <p style="padding: 20px; flex-wrap: nowrap; font-size: smaller; color: white;"> Sign in to access your application form</p>
+
+
+
+    <form action="" method="POST">
+        
+    {% csrf_token %}
+    {% for field in form %}
+        <p> <br> {{ field }}</p>
+    {% endfor %}
+    <button type="submit" class="btn btn-info">Log In</button>
+</form>    
+
+    
+<div class="text-center text-white">
+    <p  class="mt-50 text-white">- Sign With -</p>
+    <p class="gap-items-2 mb-20">
+        <a class="btn btn-social-icon btn-round btn-outline btn-white" href=""><i class="fa fa-facebook"></i></a>
+        <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-twitter"></i></a>
+        <a class="btn btn-social-icon btn-round btn-outline btn-white" href="{% provider_login_url 'google' %}"><i class="fa fa-google-plus"></i></a>
+        <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i class="fa fa-instagram"></i></a>
+      </p>	
+  </div>
+  <!-- /.social-auth-links -->
+
+  <div class="margin-top-30 text-center text-white">
+      <p>Don't have an account? <a href="{% url 'register' %}" class="text-white m-l-5">Create New Account</a></p>
+  </div></div>
+</div>
+</div>
+</div>
+
+    {%  endblock %}

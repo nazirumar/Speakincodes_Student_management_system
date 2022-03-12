@@ -1,0 +1,21 @@
+
+{% load static %}
+
+
+ {% block title %}{%  endblock %}
+<link rel="stylesheet" href="{% static 'css/confirm_suc.css' %}">
+    {% block content %}
+    <div class="success-body">
+<div class="success-mail">
+<img src="{% static 'images/logo.png' %}" alt="" height="50" srcset="">
+<div class="message-icons">
+<img src="{% static 'images/message-icons.png' %}" alt="" height="50" srcset="">
+    </div>
+<h1 style="padding-bottom: 5px;">Success! </h1>
+<p>An email from Sajo Collecge Of Nursing Science Birnin Kebbi and click on the include link to activate your account and process.</p>
+     <a href="{% url 'login' %}">Back To Home</a>
+</div>
+</div>
+
+
+    {%  endblock %}

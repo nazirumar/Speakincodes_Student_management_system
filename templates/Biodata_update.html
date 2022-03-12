@@ -1,0 +1,116 @@
+{% load static %}
+{% block title %}{%  endblock %}
+
+
+<link rel="stylesheet" href="{% static 'css/biodata.css' %}">
+
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/ugg.css' %}">  
+{% block content %}
+
+    <div class="card">
+    
+    <div class="profile-info">
+        <div class="profile-pics">
+            <a href=""> <img src="{% static 'images/Logo.png' %}" alt="Logo"  style="margin-top: 10px;"></a>
+         </div><div class="profile-pics">
+            <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" style="margin-top: 10px;"></a>
+         </div>
+{% if request.user.is_authenticated %}
+Hello {{ request.user }},
+<p>93948928</p>
+<div class="user-container">
+<div class="dashbord">
+<a href="{% url 'biodataupdate' %}"> Dashbord</a>
+<span class="glyphicon glyphicon-menu-down"></span>
+</div>
+
+<a href="{% url 'logout' %}"><i class="glyphicon glyphicon-off"></i>  Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Log-in</a>
+{% endif %}
+</div>
+</div>
+      <div class="student-info">
+    <div class="student-profile">
+<div class="icons">
+    <i class="glyphicon glyphicon-align-left" style="margin-left:10px; padding-right:10px; "></i>
+    <i class="glyphicon glyphicon-align-left"></i>
+
+</div>
+<div class="profile-pictures">
+   <a href=""> <img src="{% static 'images/download.jpg' %}" alt="" id="profile" height=40></a>
+</div>
+
+    </div>     
+    <div class="add-new"> 
+    <div class="olevel">O-LEVEL Qualification</div>
+    
+        
+      </div>
+      <div class="O-level-container">
+          <div class="Olavel-add">
+          <p style="padding:15px;">O-LEVEL</p>
+     </div>
+    <div class="biodataForm">
+
+
+<table class="student-table">                                     
+  <tr>
+      <th>Origin</th>  
+      <th>LocalGov</th>                                    
+      <th>Gender</th>  
+      <th>Contact</th>     
+                                  
+                                         
+
+                 
+  </tr> {% for item in users %}
+  <tr> 
+      <td>{{item.origin}}</td>       
+      <td>{{bio.contact}}</td>           
+      <td>{{bio.gender}}</td>  
+      <td>{{bio.localGov}}</td>           
+      <td>{{bio.Date}}</td>           
+
+      <td>
+        
+      
+      </td>                                       
+      
+  </tr>  {% endfor %}
+</table>
+
+{{bio.origin}}
+
+
+        <!-- <form method="post">
+            {% csrf_token %}
+              {% for field in form %}
+              <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                  <small style="display: none">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+              {% endfor %}
+            <button type="submit">Sign up</button>
+          </form> -->
+
+</div>
+    
+    
+</div>
+</div>
+</div>
+      </div>
+
+</div>
+{%  endblock %}

@@ -1,0 +1,21 @@
+.e-activation-container{
+    background-color: aliceblue;
+    min-height: 300px;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 20px;
+    
+   
+}
+.activation-add{
+    display: flex;
+    background-color: aqua;
+    flex-direction: column;
+}
+
+.e-4 input{
+   
+    padding:7px;
+    display: flex;
+    flex-direction: column;
+}
